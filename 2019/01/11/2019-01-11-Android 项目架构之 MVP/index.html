@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "c9985d87"
+    });
+  daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="MPV,MVVM,Android架构,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Rinfon Chan's Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="需求本文不是学术文字讨论（复制粘贴）文，所以不会详细解释什么叫 MVP，MVC，Dagger，Clean 等等。主要以实际项目为基础，简单的实现登录功能。">
+<meta name="keywords" content="MPV,MVVM,Android架构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 项目架构之 MVP">
+<meta property="og:url" content="http://yoursite.com/2019/01/11/2019-01-11-Android 项目架构之 MVP/index.html">
+<meta property="og:site_name" content="Rinfon Chan&#39;s Blog">
+<meta property="og:description" content="需求本文不是学术文字讨论（复制粘贴）文，所以不会详细解释什么叫 MVP，MVC，Dagger，Clean 等等。主要以实际项目为基础，简单的实现登录功能。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.imgur.com/IBkDUJ6.png">
+<meta property="og:image" content="https://i.imgur.com/WgwIlg5.png">
+<meta property="og:image" content="https://i.imgur.com/bDhfdeD.png">
+<meta property="og:updated_time" content="2019-01-11T09:44:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 项目架构之 MVP">
+<meta name="twitter:description" content="需求本文不是学术文字讨论（复制粘贴）文，所以不会详细解释什么叫 MVP，MVC，Dagger，Clean 等等。主要以实际项目为基础，简单的实现登录功能。">
+<meta name="twitter:image" content="https://i.imgur.com/IBkDUJ6.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/11/2019-01-11-Android 项目架构之 MVP/">
+
+
+
+
+
+  <title>Android 项目架构之 MVP | Rinfon Chan's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Rinfon Chan's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/11/2019-01-11-Android 项目架构之 MVP/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Rinfon Chan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://imgur.com/IcStsut.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rinfon Chan's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android 项目架构之 MVP</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-11T17:02:31+08:00">
+                2019-01-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>本文不是学术文字讨论（复制粘贴）文，所以不会详细解释什么叫 MVP，MVC，Dagger，Clean 等等。主要以实际项目为基础，简单的实现登录功能。</p>
+<a id="more"></a>
+<p>当代码量越来越大，需要对已有的代码进行整理以及重构，实现解耦.</p>
+<p><strong>无论任何的架构模式以及设计模式都是为了代码解耦</strong></p>
+<h2 id="研究方向"><a href="#研究方向" class="headerlink" title="研究方向"></a>研究方向</h2><p>MVP 模式：</p>
+<ul>
+<li>Model:<br>数据层，主要负责网络数据请求与获取，数据库的处理等等数据相关的逻辑处理</li>
+<li>View:<br>视图层，显示数据，例如 Activity,Fragment,View 等等 UI 载体</li>
+<li>Presenter:<br>代理层, View 逻辑处理的集合，并且将 Model 获取的数据返回给 View 层</li>
+</ul>
+<p>MVP 类型</p>
+<ul>
+<li>MVP 简单版</li>
+<li>MVP-Clean<br>主要参考实现 <a href="https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html" target="_blank" rel="noopener">Clean Architecture.</a></li>
+<li>MVP-Dagger<br><a href="https://google.github.io/dagger/" target="_blank" rel="noopener">Dragger2 的 MVP 实现</a></li>
+<li>MVP-RxJava<br><a href="https://github.com/ReactiveX/RxJava" target="_blank" rel="noopener">RxJava 的 MVP</a></li>
+</ul>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="MVP-的简单实现"><a href="#MVP-的简单实现" class="headerlink" title="MVP 的简单实现"></a>MVP 的简单实现</h3><h4 id="逻辑图"><a href="#逻辑图" class="headerlink" title="逻辑图"></a>逻辑图</h4><p><img src="https://i.imgur.com/IBkDUJ6.png" alt="mvp.png"></p>
+<ul>
+<li>View<br>UI 的展示</li>
+<li>BasePresenterImpl<br>封装了 View 的处理流程，数据回调等等，例如进行网络请求的时候，loading 的显示与隐藏。</li>
+<li>LoginPresenter<br>登录逻辑处理的地方</li>
+<li>BaseRespository<br>封装了异常处理，例如网络请求回调的时候，页面消失了，这时候再进行 ui 处理的话就会奔溃。<br>为了不每个页面都加上判空处理，所以就封装了一层。如不需要可以去掉这一层</li>
+<li>LoginRespository<br>登录真正执行的地方</li>
+</ul>
+<h4 id="关键代码"><a href="#关键代码" class="headerlink" title="关键代码"></a>关键代码</h4><p> <strong>MainActivity.java</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> <span class="keyword">implements</span> <span class="title">IBaseView</span>&lt;<span class="title">String</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">         LoginPresenter loginPresenter;</span><br><span class="line"></span><br><span class="line">         <span class="meta">@Override</span></span><br><span class="line">         <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">             <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">             setContentView(R.layout.activity_main);</span><br><span class="line">             loginPresenter = <span class="keyword">new</span> LoginPresenter(<span class="keyword">this</span>);</span><br><span class="line">             loginPresenter.toLogin(<span class="string">"111"</span>, <span class="string">"111"</span>);</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         <span class="meta">@Override</span></span><br><span class="line">         <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">             loginPresenter.unBind();</span><br><span class="line">             <span class="keyword">super</span>.onDestroy();</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         <span class="meta">@Override</span></span><br><span class="line">         <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSuccess</span><span class="params">(String Result)</span> </span>&#123;</span><br><span class="line">             Log.i(<span class="string">"MainActivity"</span>, Result);</span><br><span class="line"></span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         <span class="meta">@Override</span></span><br><span class="line">         <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFailed</span><span class="params">(ErrorCode errorCode)</span> </span>&#123;</span><br><span class="line">             Log.i(<span class="string">"MainActivity"</span>, errorCode.getMessage());</span><br><span class="line">             String msg = <span class="keyword">null</span>;</span><br><span class="line">             msg.toLowerCase();</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         <span class="meta">@Override</span></span><br><span class="line">         <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showProgress</span><span class="params">()</span> </span>&#123;</span><br><span class="line">             Log.i(<span class="string">"MainActivity"</span>, <span class="string">"loading"</span>);</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         <span class="meta">@Override</span></span><br><span class="line">         <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hideProgress</span><span class="params">()</span> </span>&#123;</span><br><span class="line">             Log.i(<span class="string">"MainActivity"</span>, <span class="string">"hide loading"</span>);</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>LoginPresenter.java</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginPresenter</span> <span class="keyword">extends</span> <span class="title">BasePresenterImpl</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        IBaseRepository baseRepository;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">LoginPresenter</span><span class="params">(IBaseView mView)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">super</span>(mView);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">toLogin</span><span class="params">(String uid, String password)</span> </span>&#123;</span><br><span class="line">            mView.showProgress();</span><br><span class="line">            baseRepository = LoginRepository.Builder(baseCallback)</span><br><span class="line">                .setUid(uid).setPassword(password);</span><br><span class="line">            baseRepository.Action();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>LoginRepository.java</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginRepository</span> <span class="keyword">extends</span> <span class="title">BaseRepository</span> <span class="keyword">implements</span> <span class="title">IBaseRepository</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">         <span class="keyword">private</span> String uid;</span><br><span class="line"></span><br><span class="line">         <span class="keyword">private</span> String password;</span><br><span class="line"></span><br><span class="line">         <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> LoginRepository <span class="title">Builder</span><span class="params">(BaseInteractor.Callback callback)</span> </span>&#123;</span><br><span class="line">             <span class="keyword">return</span> <span class="keyword">new</span> LoginRepository(callback);</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         <span class="function"><span class="keyword">public</span> String <span class="title">getUid</span><span class="params">()</span> </span>&#123;</span><br><span class="line">             <span class="keyword">return</span> uid;</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         <span class="function"><span class="keyword">public</span> LoginRepository <span class="title">setUid</span><span class="params">(String uid)</span> </span>&#123;</span><br><span class="line">             <span class="keyword">this</span>.uid = uid;</span><br><span class="line">             <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         <span class="function"><span class="keyword">public</span> String <span class="title">getPassword</span><span class="params">()</span> </span>&#123;</span><br><span class="line">             <span class="keyword">return</span> password;</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         <span class="function"><span class="keyword">public</span> LoginRepository <span class="title">setPassword</span><span class="params">(String password)</span> </span>&#123;</span><br><span class="line">             <span class="keyword">this</span>.password = password;</span><br><span class="line">             <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         <span class="function"><span class="keyword">public</span> <span class="title">LoginRepository</span><span class="params">(BaseInteractor.Callback callback)</span> </span>&#123;</span><br><span class="line">             <span class="keyword">super</span>(callback);</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         <span class="meta">@Override</span></span><br><span class="line">         <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Action</span><span class="params">()</span> </span>&#123;</span><br><span class="line">     <span class="comment">//        TODO</span></span><br><span class="line">     <span class="comment">//        网络请求</span></span><br><span class="line">     <span class="comment">//        onRequsetSuccess("login success");</span></span><br><span class="line"></span><br><span class="line">             onRequestFailed(<span class="keyword">new</span> ErrorCode().setStatus(<span class="number">0</span>).setMessage(<span class="string">"login fail"</span>));</span><br><span class="line"></span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         <span class="meta">@Override</span></span><br><span class="line">         <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Cancel</span><span class="params">()</span> </span>&#123;</span><br><span class="line">     <span class="comment">//        TODO</span></span><br><span class="line">     <span class="comment">//        取消网络请求</span></span><br><span class="line"></span><br><span class="line">     <span class="comment">//        回调上一次进行异常处理</span></span><br><span class="line">             onCancel();</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
+<p> <strong>完整代码已经上传到github上去了 -&gt; <a href="https://github.com/rinfon/mvp.git" target="_blank" rel="noopener">https://github.com/rinfon/mvp.git</a></strong></p>
+<h3 id="MVP-Clean"><a href="#MVP-Clean" class="headerlink" title="MVP-Clean"></a>MVP-Clean</h3><h4 id="逻辑图-1"><a href="#逻辑图-1" class="headerlink" title="逻辑图"></a>逻辑图</h4><ul>
+<li>Clean 架构图<br><img src="https://i.imgur.com/WgwIlg5.png" alt="195193-73c5ad459c2199c2.png"></li>
+<li>时序图<br><img src="https://i.imgur.com/bDhfdeD.png" alt="195193-3db604de6c4b0137.png"><br>就像这篇文章<a href="https://www.jianshu.com/p/7ae3095f2cb5" target="_blank" rel="noopener">Android 官方架构项目之 MVP + Clean 所说</a>，clean 架构比简单版的 MVP 就是多了一层 Domain 层，减轻 Presenter 的负担。</li>
+</ul>
+<h4 id="关键代码-1"><a href="#关键代码-1" class="headerlink" title="关键代码"></a>关键代码</h4><p> 在研究官方的<a href="https://github.com/googlesamples/android-architecture/tree/todo-mvp-clean/" target="_blank" rel="noopener">Demo</a>中，有些地方还是值得斟酌的</p>
+<ul>
+<li>View 层不通用，例如有些 loading，onSuccess，onError 等通用函数应该抽象到 BaseView 里面去，减少代码量</li>
+<li>所有的 Task 都在一开始就在界面初始化好了，如果有些功能我没有用到，那么就浪费资源了，应该改成需要用到的时候再初始化</li>
+<li>在 presenter 初始化的时候，View 层传的参数太多了。例如 View 层所有的 task 都要初始化好传进去。个人认为这是不科学的。但后来想官方这样写的原因是为了区分 View 与 Presenter 的职责（看来我还是太年轻了），View 作为数据的提供者，Presenter 作为数据的接受者。所以才不在 Presenter 层新建数据。既然如此，那只需要 Builder 模式就可以解决参数过多的问题了。</li>
+<li>Presenter 层 callback 重复代码过多，例如</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mUseCaseHandler.execute(loginTask, <span class="keyword">new</span> LoginTask.LoginRequestValues(uid, password),</span><br><span class="line">                                <span class="keyword">new</span> UseCase.UseCaseCallback&lt;BaseResponseValues&gt;() &#123;</span><br><span class="line"></span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSuccess</span><span class="params">(BaseResponseValues response)</span> </span>&#123;</span><br><span class="line">                    mView.closeLoading();</span><br><span class="line">                    mView.onSuccess(response);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    mView.closeLoading();</span><br><span class="line">                    mView.onFail();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br></pre></td></tr></table></figure>
+<p>每次 excute 都需要提供一个 callback，而每个 callback 仅仅 response 的类型不一样而已。流程还是一样的。所以重复代码还是很多。</p>
+<p>原本想在 UserCaseHandler 里面增加 View 的持有，从而在 UserCaseHandler 进行 CallBack 的时候把 closeloading 和 onSucces，onFail 都写好，这样就可以解决问题了。</p>
+<p><strong>这样的设计方案有个弊端，View 层入侵了 UserCaseHandler，耦合度又增加了。所以看实际需求来权衡吧</strong></p>
+<p>来来来，上代码</p>
+<p><strong>MvpCleanActivity.java</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MvpCleanActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> <span class="keyword">implements</span> <span class="title">LoginContract</span>.<span class="title">View</span>&lt;<span class="title">BaseResponseValues</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">            CleanLoginPresenter loginPresenter;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">                setContentView(R.layout.activity_main);</span><br><span class="line">                loginPresenter = <span class="keyword">new</span> CleanLoginPresenter(<span class="keyword">this</span>, UseCaseHandler.getInstance(), <span class="keyword">new</span> LoginTask());</span><br><span class="line">                loginPresenter.login(<span class="string">"111"</span>, <span class="string">"111"</span>);</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">super</span>.onDestroy();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showLoading</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                Log.i(<span class="string">"MvpCleanActivity"</span>, <span class="string">"showloading"</span>);</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeLoading</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                Log.i(<span class="string">"MvpCleanActivity"</span>, <span class="string">"closeloading"</span>);</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSuccess</span><span class="params">(BaseResponseValues r)</span> </span>&#123;</span><br><span class="line">                Log.i(<span class="string">"MvpCleanActivity"</span>, r.getResult().getMessage());</span><br><span class="line">        <span class="comment">//        will crash</span></span><br><span class="line">                String msg = <span class="keyword">null</span>;</span><br><span class="line">                msg.toLowerCase();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFail</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                Log.i(<span class="string">"MvpCleanActivity"</span>, <span class="string">"login fail"</span>);</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>CleanLoginPresenter.java</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CleanLoginPresenter</span> <span class="keyword">implements</span> <span class="title">LoginContract</span>.<span class="title">Presenter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">private</span> <span class="keyword">final</span> LoginContract.View mView;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">private</span> <span class="keyword">final</span> UseCaseHandler mUseCaseHandler;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">private</span> <span class="keyword">final</span> LoginTask loginTask;</span><br><span class="line"></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="title">CleanLoginPresenter</span><span class="params">(LoginContract.View mView, UseCaseHandler mUseCaseHandler, LoginTask loginTask)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//        TODO 参数过多，使用 builder 模式</span></span><br><span class="line">                <span class="keyword">this</span>.mView = mView;</span><br><span class="line">                <span class="keyword">this</span>.mUseCaseHandler = mUseCaseHandler;</span><br><span class="line">                <span class="keyword">this</span>.loginTask = loginTask;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">login</span><span class="params">(String uid, String password)</span> </span>&#123;</span><br><span class="line">                mView.showLoading();</span><br><span class="line">                mUseCaseHandler.execute(loginTask, <span class="keyword">new</span> LoginTask.LoginRequestValues(uid, password),</span><br><span class="line">                        <span class="keyword">new</span> UseCase.UseCaseCallback&lt;BaseResponseValues&gt;() &#123;</span><br><span class="line"></span><br><span class="line">                            <span class="meta">@Override</span></span><br><span class="line">                            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSuccess</span><span class="params">(BaseResponseValues response)</span> </span>&#123;</span><br><span class="line">                                mView.closeLoading();</span><br><span class="line">                                mView.onSuccess(response);</span><br><span class="line">                            &#125;</span><br><span class="line"></span><br><span class="line">                            <span class="meta">@Override</span></span><br><span class="line">                            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                                mView.closeLoading();</span><br><span class="line">                                mView.onFail();</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;);</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>LoginTask.java</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginTask</span> <span class="keyword">extends</span> <span class="title">UseCase</span>&lt;<span class="title">LoginTask</span>.<span class="title">LoginRequestValues</span>, <span class="title">BaseResponseValues</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">             <span class="meta">@Override</span></span><br><span class="line">             <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">executeUseCase</span><span class="params">(LoginRequestValues requestValues)</span> </span>&#123;</span><br><span class="line">                 <span class="comment">//        TODO 网络请求</span></span><br><span class="line"></span><br><span class="line">                 <span class="comment">//        回调</span></span><br><span class="line">                 getUseCaseCallback().onSuccess(<span class="keyword">new</span> BaseResponseValues(</span><br><span class="line">                                                                       ResponseEntry</span><br><span class="line">                                                                       .Builder()</span><br><span class="line">                                                                       .setStatus(<span class="number">1</span>)</span><br><span class="line">                                                                       .setMessage(<span class="string">"Login success"</span>)));</span><br><span class="line"></span><br><span class="line">             &#125;</span><br><span class="line"></span><br><span class="line">             <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginRequestValues</span> <span class="keyword">extends</span> <span class="title">BaseRequsetValues</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">                 <span class="function"><span class="keyword">public</span> <span class="title">LoginRequestValues</span><span class="params">(@NonNull String uid, @NonNull String password)</span> </span>&#123;</span><br><span class="line">                     <span class="keyword">super</span>(<span class="keyword">new</span> HashMap&lt;String, String&gt;());</span><br><span class="line">                     uid = checkNotNull(uid, <span class="string">"task cannot be null!"</span>);</span><br><span class="line">                     password = checkNotNull(password, <span class="string">"task cannot be null!"</span>);</span><br><span class="line">                     getParmas().put(<span class="string">"uid"</span>, uid);</span><br><span class="line">                     getParmas().put(<span class="string">"password"</span>, password);</span><br><span class="line">                 &#125;</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;</span><br></pre></td></tr></table></figure>
+<p> LoginTask 里面跟官方还是不一样的，因为实际需求中，请求的参数和返回的结果结构大多数都是一样的，所以 RequestValues 和 ResponseValues 还是可以封装成公用的。</p>
+<p><strong>LoginContract.java</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginContract</span> </span>&#123;</span><br><span class="line">             <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">View</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">                 <span class="function"><span class="keyword">void</span> <span class="title">showLoading</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">                 <span class="function"><span class="keyword">void</span> <span class="title">closeLoading</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">                 <span class="function"><span class="keyword">void</span> <span class="title">onSuccess</span><span class="params">(T Result)</span></span>;</span><br><span class="line"></span><br><span class="line">                 <span class="function"><span class="keyword">void</span> <span class="title">onFail</span><span class="params">()</span></span>;</span><br><span class="line">             &#125;</span><br><span class="line"></span><br><span class="line">             <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Presenter</span> </span>&#123;</span><br><span class="line">                 <span class="function"><span class="keyword">void</span> <span class="title">login</span><span class="params">(String uid, String password)</span></span>;</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>就像本文所说，View 层可以再封装成 BaseView，把重复的的代码放进去</strong></p>
+<p><strong>UserCase</strong><br>相关的就不放出来了，官方已经封装好了，实际上就是封装了一个线程池，用于异步处理 Task，所以直接使用即可。<br><strong>完整代码已经上传到 github上去了 -&gt; <a href="https://github.com/rinfon/mvp.git" target="_blank" rel="noopener">https://github.com/rinfon/mvp.git</a></strong></p>
+<h3 id="MVP-Dagger"><a href="#MVP-Dagger" class="headerlink" title="MVP-Dagger"></a>MVP-Dagger</h3><p>  未完待续</p>
+<h3 id="MVP-RxJava"><a href="#MVP-RxJava" class="headerlink" title="MVP-RxJava"></a>MVP-RxJava</h3><p><code>RxJava</code> ，之前我一直很抗拒，因为上手感觉很难，另一部分可能自己心燥，静不下来好好研究。但最近看 MVP-clean 的时候有用到，所以也就铁下心来研究了一下。</p>
+<p>  本来想写篇文章来分享一下的，但后来看到大神们都已经解释的很清楚，连我都能看懂的，我相信你们都能看懂的。</p>
+<p>  附上链接 ，<a href="https://www.jianshu.com/p/464fa025229e" target="_blank" rel="noopener">小水管 RxJava</a> 通过作者的小水管，我相信你们也会喜欢上 RxJava 的。</p>
+<h4 id="回到整体"><a href="#回到整体" class="headerlink" title="回到整体"></a>回到整体</h4><p>  MVP-RxJava，我看了 google 的 demo 之后，发现其实没什么特别的神的地方（应该是没什么出彩的地方），也就是简单版的 MVP 加上 RxJava 而已，所以 demo 就不放出来了。放出关键代码吧</p>
+<p>  <strong>LoginPresenter.Java</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">mCompositeDisposable.add(Observable.create(<span class="keyword">new</span> ObservableOnSubscribe&lt;User&gt;() &#123;</span><br><span class="line">                  <span class="meta">@Override</span></span><br><span class="line">                  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">subscribe</span><span class="params">(ObservableEmitter&lt;User&gt; e)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">                      User user = <span class="keyword">new</span> User();</span><br><span class="line">                      user.uid = uid;</span><br><span class="line">                      user.password = password;</span><br><span class="line">                      e.onNext(user);</span><br><span class="line">                      e.onComplete();</span><br><span class="line">                  &#125;</span><br><span class="line">              &#125;).subscribeOn(mSchedulerProvider.io())</span><br><span class="line">                      .observeOn(mSchedulerProvider.ui())</span><br><span class="line">                      .subscribe(<span class="keyword">new</span> Consumer&lt;User&gt;() &#123;</span><br><span class="line">                          <span class="meta">@Override</span></span><br><span class="line">                          <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">accept</span><span class="params">(User user)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">                              mView.closeLoading();</span><br><span class="line">                              mView.onSuccess(user);</span><br><span class="line">                          &#125;</span><br><span class="line">                      &#125;, <span class="keyword">new</span> Consumer&lt;Throwable&gt;() &#123;</span><br><span class="line">                          <span class="meta">@Override</span></span><br><span class="line">                          <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">accept</span><span class="params">(Throwable throwable)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">                              mView.closeLoading();</span><br><span class="line">                              mView.onFail();</span><br><span class="line">                          &#125;</span><br><span class="line">                      &#125;));</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>任何架构设计都是为了解耦，而解耦随之带来的就是代码的增加以及重复</li>
+<li>设计的过程中，要注意各层的职责，尽量可以避免入侵</li>
+<li>在我的 Demo 中，为了处理回调导致的奔溃，我对回调进行了 try catch，这没有问题，但要对详细的异常进行区分，不能所有的异常都吃掉，这是一种不负责的写法（小孩子不要模范啦）有时候，就应该让它 Crash，才知道问题所在。如果非要吃掉所有的异常，也要封装成一个 ErrorCode，对错误信息进行收集。<a href="https://www.zhihu.com/question/29459586" target="_blank" rel="noopener">知乎链接</a>，里面有大牛解释的很清楚了。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+</div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将是我最大的动力</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weixin.png" alt="Rinfon Chan 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Rinfon Chan 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MPV/" rel="tag"><i class="fa fa-tag"></i> MPV</a>
+          
+            <a href="/tags/MVVM/" rel="tag"><i class="fa fa-tag"></i> MVVM</a>
+          
+            <a href="/tags/Android架构/" rel="tag"><i class="fa fa-tag"></i> Android架构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/11/2019-01-11-解决 found an invalid color/" rel="next" title="解决 found an invalid color">
+                <i class="fa fa-chevron-left"></i> 解决 found an invalid color
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/12/2019-01-12-android studio Jar 包制作以及混淆/" rel="prev" title="android studio Jar 包制作以及混淆">
+                android studio Jar 包制作以及混淆 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://imgur.com/IcStsut.jpg" alt="Rinfon Chan">
+            
+              <p class="site-author-name" itemprop="name">Rinfon Chan</p>
+              <p class="site-description motion-element" itemprop="description">程序员的百宝箱</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/rinfon" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                推荐阅读
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://example.com/" title="MVP" target="_blank">MVP</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+  <script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+  <script src="//cdn.bootcss.com/blueimp-md5/1.1.0/js/md5.min.js"></script>
+  <script>
+      var gitalk = new Gitalk({
+        clientID: '340001cdbba68c1dc1e1',
+        clientSecret: 'b4e3161a0f891c9ea14050de3c7f732c10fafc4f',
+        repo: 'rinfon.github.com',
+        owner: 'rinfon',
+        admin: 'rinfon',
+        id: md5(location.pathname),
+        distractionFreeMode: 'true'
+      });
+      var div = document.createElement('div');
+      div.setAttribute("id", "gitalk_comments");
+      div.setAttribute("class", "post-nav");
+      var bro = document.getElementById('posts').getElementsByTagName('article');
+      bro = bro[0].getElementsByClassName('post-block');
+      bro = bro[0].getElementsByTagName('footer');
+      bro = bro[0];
+      bro.appendChild(div);
+      gitalk.render('gitalk_comments');
+  </script>
+
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#需求"><span class="nav-number">1.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#研究方向"><span class="nav-number">2.</span> <span class="nav-text">研究方向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">3.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MVP-的简单实现"><span class="nav-number">3.1.</span> <span class="nav-text">MVP 的简单实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#逻辑图"><span class="nav-number">3.1.1.</span> <span class="nav-text">逻辑图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关键代码"><span class="nav-number">3.1.2.</span> <span class="nav-text">关键代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MVP-Clean"><span class="nav-number">3.2.</span> <span class="nav-text">MVP-Clean</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#逻辑图-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">逻辑图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关键代码-1"><span class="nav-number">3.2.2.</span> <span class="nav-text">关键代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MVP-Dagger"><span class="nav-number">3.3.</span> <span class="nav-text">MVP-Dagger</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MVP-RxJava"><span class="nav-number">3.4.</span> <span class="nav-text">MVP-RxJava</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#回到整体"><span class="nav-number">3.4.1.</span> <span class="nav-text">回到整体</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Rinfon Chan</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
