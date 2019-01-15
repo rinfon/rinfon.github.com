@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[MWeb 自动发布到 Hexo]]></title>
     <url>%2F2019%2F01%2F15%2FMWeb%20%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83%E5%88%B0%20Hexo%2F</url>
-    <content type="text"><![CDATA[需求配合Alfred实现以下功能 新建文章 查询文章 增加Tag功能 自动发布到某篇文章到Hexo 新建文章 查询文章增加Tag功能自动发布某篇文章到Hexo title问题 tag问题 数据库查询 关联mweb hexo问题遇到的问题 alfred 执行git、hexo命令找不到问题]]></content>
+    <content type="text"><![CDATA[需求之前一直在寻找一个合适的方式来记录工作的日常，例如问题记录、方案计划等等。但一直没有找到一直适合自己的工作流程。主要还是卡在记录这一步骤。 记录。记什么、记在哪里、怎么记。 为了解决记录问题，我尝试过Eventnote、便签、手写笔记本等等。最后发现都因为各种各样的原因让我放弃了。 Eventnote的编辑器、便签的同步问题、手机笔记本的搜索问题都在阻碍着我记录 个人认为一个良好的工作流程应该如下： 接收到需求 计划 实施 记录 归档 配合Alfred实现以下功能 新建文章 查询文章 增加Tag功能 自动发布到某篇文章到Hexo 新建文章查询文章增加Tag功能自动发布某篇文章到Hexo title问题 tag问题 数据库查询 关联mweb hexo问题遇到的问题 alfred 执行git、hexo命令找不到问题]]></content>
       <tags>
         <tag>我</tag>
         <tag>git</tag>
