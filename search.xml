@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Mweb alfred一键发布测试]]></title>
-    <url>%2F2019%2F01%2F15%2FMweb%20alfred%E4%B8%80%E9%94%AE%E5%8F%91%E5%B8%83%E6%B5%8B%E8%AF%95%2F</url>
-    <content type="text"><![CDATA[能自动添加多个tag更新了]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[test]]></title>
-    <url>%2F2019%2F01%2F14%2Ftest%2F</url>
-    <content type="text"><![CDATA[sfdfs]]></content>
+    <title><![CDATA[MWeb 自动发布到 Hexo]]></title>
+    <url>%2F2019%2F01%2F15%2FMWeb%20%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83%E5%88%B0%20Hexo%2F</url>
+    <content type="text"><![CDATA[需求配合Alfred实现以下功能 新建文章 查询文章 增加Tag功能 自动发布到某篇文章到Hexo 新建文章查询文章增加Tag功能自动发布某篇文章到Hexo title问题 tag问题 数据库查询 关联mweb hexo问题遇到的问题 alfred 执行git、hexo命令找不到问题]]></content>
       <tags>
         <tag>我</tag>
         <tag>git</tag>
+        <tag>新增的tag</tag>
       </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>%2F2019%2F01%2F14%2FMWeb%20%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83%E5%88%B0%20Hexo%2F</url>
-    <content type="text"><![CDATA[title:MWeb 自动发布到 Hexo需求配合Alfred实现以下功能 新建文章 查询文章 自动发布到某篇文章到Hexo 新建文章##alfred代码编写参考https://github.com/zfanswer/alfred-workflow-hexo在这基础上增加发布到hexo]]></content>
+    <title><![CDATA[Mweb alfred一键发布测试]]></title>
+    <url>%2F2019%2F01%2F15%2FMweb%20alfred%E4%B8%80%E9%94%AE%E5%8F%91%E5%B8%83%E6%B5%8B%E8%AF%95%2F</url>
+    <content type="text"><![CDATA[能自动添加多个tag更新了]]></content>
   </entry>
   <entry>
     <title><![CDATA[android studio Jar 包制作以及混淆]]></title>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-01-14T16:17:47.000Z</updated>
+  <updated>2019-01-15T08:40:21.061Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MWeb 自动发布到 Hexo</title>
+    <link href="http://yoursite.com/2019/01/15/MWeb%20%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83%E5%88%B0%20Hexo/"/>
+    <id>http://yoursite.com/2019/01/15/MWeb 自动发布到 Hexo/</id>
+    <published>2019-01-15T08:40:21.060Z</published>
+    <updated>2019-01-15T08:40:21.061Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>配合<code>Alfred</code>实现以下功能</p><ul><li style="list-style: none"><input type="checkbox"> 新建文章</li><li style="list-style: none"><input type="checkbox"> 查询文章</li><li style="list-style: none"><input type="checkbox"> 增加Tag功能</li><li style="list-style: none"><input type="checkbox" checked> 自动发布到某篇文章到Hexo</li></ul><h2 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h2><h2 id="查询文章"><a href="#查询文章" class="headerlink" title="查询文章"></a>查询文章</h2><h2 id="增加Tag功能"><a href="#增加Tag功能" class="headerlink" title="增加Tag功能"></a>增加Tag功能</h2><h2 id="自动发布某篇文章到Hexo"><a href="#自动发布某篇文章到Hexo" class="headerlink" title="自动发布某篇文章到Hexo"></a>自动发布某篇文章到Hexo</h2><ul><li>title问题</li><li>tag问题<br>  数据库查询</li><li>关联mweb hexo问题<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2></li><li>alfred 执行git、hexo命令找不到问题</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;需求&quot;&gt;&lt;a href=&quot;#需求&quot; class=&quot;headerlink&quot; title=&quot;需求&quot;&gt;&lt;/a&gt;需求&lt;/h2&gt;&lt;p&gt;配合&lt;code&gt;Alfred&lt;/code&gt;实现以下功能&lt;/p&gt;
+&lt;ul&gt;
+&lt;li style=&quot;list-style: none&quot;&gt;&lt;inp
+      
+    
+    </summary>
+    
+    
+      <category term="我" scheme="http://yoursite.com/tags/%E6%88%91/"/>
+    
+      <category term="git" scheme="http://yoursite.com/tags/git/"/>
+    
+      <category term="新增的tag" scheme="http://yoursite.com/tags/%E6%96%B0%E5%A2%9E%E7%9A%84tag/"/>
+    
+  </entry>
   
   <entry>
     <title>Mweb alfred一键发布测试</title>
@@ -30,54 +59,6 @@
       
       
         &lt;h2 id=&quot;能自动添加多个tag&quot;&gt;&lt;a href=&quot;#能自动添加多个tag&quot; class=&quot;headerlink&quot; title=&quot;能自动添加多个tag&quot;&gt;&lt;/a&gt;能自动添加多个tag&lt;/h2&gt;&lt;h3 id=&quot;更新了&quot;&gt;&lt;a href=&quot;#更新了&quot; class=&quot;header
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>test</title>
-    <link href="http://yoursite.com/2019/01/14/test/"/>
-    <id>http://yoursite.com/2019/01/14/test/</id>
-    <published>2019-01-14T15:45:26.000Z</published>
-    <updated>2019-01-14T15:45:26.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>sfdfs</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;sfdfs&lt;/p&gt;
-
-      
-    
-    </summary>
-    
-    
-      <category term="我" scheme="http://yoursite.com/tags/%E6%88%91/"/>
-    
-      <category term="git" scheme="http://yoursite.com/tags/git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://yoursite.com/2019/01/14/MWeb%20%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83%E5%88%B0%20Hexo/"/>
-    <id>http://yoursite.com/2019/01/14/MWeb 自动发布到 Hexo/</id>
-    <published>2019-01-14T14:43:44.000Z</published>
-    <updated>2019-01-14T14:43:44.000Z</updated>
-    
-    <content type="html"><![CDATA[<hr><h2 id="title-MWeb-自动发布到-Hexo"><a href="#title-MWeb-自动发布到-Hexo" class="headerlink" title="title:MWeb 自动发布到 Hexo"></a>title:MWeb 自动发布到 Hexo</h2><h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>配合<code>Alfred</code>实现以下功能</p><ol><li>新建文章</li><li>查询文章</li><li>自动发布到某篇文章到Hexo</li></ol><h2 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h2><p>##alfred代码编写<br>参考<a href="https://github.com/zfanswer/alfred-workflow-hexo" target="_blank" rel="noopener">https://github.com/zfanswer/alfred-workflow-hexo</a><br>在这基础上增加发布到hexo</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;hr&gt;
-&lt;h2 id=&quot;title-MWeb-自动发布到-Hexo&quot;&gt;&lt;a href=&quot;#title-MWeb-自动发布到-Hexo&quot; class=&quot;headerlink&quot; title=&quot;title:MWeb 自动发布到 Hexo&quot;&gt;&lt;/a&gt;title:MWeb 自动发布到 H
       
     
     </summary>
