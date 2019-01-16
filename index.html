@@ -314,7 +314,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/15/Android 项目架构之 MVP/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/16/MWeb 自动发布到 Hexo/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Rinfon Chan">
@@ -333,7 +333,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/15/Android 项目架构之 MVP/" itemprop="url">Android 项目架构之 MVP</a></h1>
+                <a class="post-title-link" href="/2019/01/16/MWeb 自动发布到 Hexo/" itemprop="url">MWeb 自动发布到 Hexo</a></h1>
         
 
         <div class="post-meta">
@@ -345,8 +345,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-15T21:11:45+08:00">
-                2019-01-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-16T15:08:25+08:00">
+                2019-01-16
               </time>
             
 
@@ -384,20 +384,21 @@
 
       
         
-          <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>本文不是学术文字讨论（复制粘贴）文，所以不会详细解释什么叫 MVP，MVC，Dagger，Clean 等等。主要以实际项目为基础，简单的实现登录功能。</p>
-<p>当代码量越来越大，需要对已有的代码进行整理以及重构，实现解耦.</p>
-<p><strong>无论任何的架构模式以及设计模式都是为了代码解耦</strong></p>
-<h2 id="研究方向"><a href="#研究方向" class="headerlink" title="研究方向"></a>研究方向</h2><p>MVP 模式：<br>
+          <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>之前一直在寻找一个合适的方式来记录工作的日常，例如问题记录、方案计划等等。但一直没有找到一直适合自己的工作流程。主要还是卡在<code>记录</code>这一步骤。</p>
+<blockquote>
+<p>记录 -&gt; 记什么、记在哪里、怎么记。</p>
+</blockquote>
+<p><strong><em>以下将有几百字的废话，赶时间的可以直接下一章节</em></strong></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/01/15/Android 项目架构之 MVP/#more" rel="contents">
+            <a class="btn" href="/2019/01/16/MWeb 自动发布到 Hexo/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
           <!--/noindex-->
         
       
-    </p></div>
+    </div>
     
     
     
@@ -445,7 +446,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/15/MWeb 自动发布到 Hexo/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/15/Android 项目架构之 MVP/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Rinfon Chan">
@@ -464,7 +465,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/15/MWeb 自动发布到 Hexo/" itemprop="url">MWeb 自动发布到 Hexo</a></h1>
+                <a class="post-title-link" href="/2019/01/15/Android 项目架构之 MVP/" itemprop="url">Android 项目架构之 MVP</a></h1>
         
 
         <div class="post-meta">
@@ -476,7 +477,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-15T21:06:36+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-15T21:09:25+08:00">
                 2019-01-15
               </time>
             
@@ -515,15 +516,13 @@
 
       
         
-          <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>之前一直在寻找一个合适的方式来记录工作的日常，例如问题记录、方案计划等等。但一直没有找到一直适合自己的工作流程。主要还是卡在<code>记录</code>这一步骤。</p>
-<blockquote>
-<p>记录。记什么、记在哪里、怎么记。</p>
-</blockquote>
-<p>为了解决记录问题，我尝试过<code>Eventnote</code>、<code>便签</code>、<code>手写笔记本</code>等等。最后发现都因为各种各样的原因让我放弃了。</p>
-<p><code>Eventnote</code>的编辑器、<code>便签</code>的同步问题、<code>手机笔记本</code>的搜索问题都在阻碍着我记录<br>
+          <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>本文不是学术文字讨论（复制粘贴）文，所以不会详细解释什么叫 MVP，MVC，Dagger，Clean 等等。主要以实际项目为基础，简单的实现登录功能。</p>
+<p>当代码量越来越大，需要对已有的代码进行整理以及重构，实现解耦.</p>
+<p><strong>无论任何的架构模式以及设计模式都是为了代码解耦</strong></p>
+<h2 id="研究方向"><a href="#研究方向" class="headerlink" title="研究方向"></a>研究方向</h2><p>MVP 模式：<br>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/01/15/MWeb 自动发布到 Hexo/#more" rel="contents">
+            <a class="btn" href="/2019/01/15/Android 项目架构之 MVP/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1007,7 +1006,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
