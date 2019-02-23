@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-02-23T15:22:23.941Z</updated>
+  <updated>2019-02-23T15:22:43.602Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,8 +20,8 @@
     <title>Android蓝牙连接问题</title>
     <link href="http://yoursite.com/2019/02/23/Android%E8%93%9D%E7%89%99%E8%BF%9E%E6%8E%A5%E9%97%AE%E9%A2%98/"/>
     <id>http://yoursite.com/2019/02/23/Android蓝牙连接问题/</id>
-    <published>2019-02-23T15:22:23.941Z</published>
-    <updated>2019-02-23T15:22:23.941Z</updated>
+    <published>2019-02-23T15:22:43.602Z</published>
+    <updated>2019-02-23T15:22:43.602Z</updated>
     
     <content type="html"><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>部分在使用<a href="https://github.com/Jasonchenlijian/FastBle" target="_blank" rel="noopener">FastBleLib</a>的时候，会出现连接失败<br>错误码为<code>BleException { code=102, description=&#39;GATT discover services exception occurred!&#39;}</code>、或者连接上了，却找不到读写服务。</p><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><ul><li>设备蓝牙库的问题，需要更换蓝牙库</li><li>在进行蓝牙连接的时候，重连多次</li><li>去到系统蓝牙设置页面，手动点击蓝牙配对，然后再回到app内进行蓝牙重连。<a id="more"></a></li></ul><p><strong>其实多数都是因为设备蓝牙库的问题导致，可以尝试连接其他设备的蓝牙，是否会出现相同的问题</strong></p>]]></content>
     
@@ -35,6 +35,8 @@
     
     </summary>
     
+    
+      <category term="android" scheme="http://yoursite.com/tags/android/"/>
     
   </entry>
   
