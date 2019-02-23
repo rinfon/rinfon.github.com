@@ -554,7 +554,7 @@
           
 
   
- <div id="gitalk-container"></div>
+<div id="gitalk-container"></div>
   
 
 
@@ -885,20 +885,29 @@
 
 
 
+
   <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+
   <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
    <script type="text/javascript">
         var gitalk = new Gitalk({
-          clientID: '',
-          clientSecret: '',
-          repo: 'rinfon.github.com',
-          owner: '',
-          admin: [''],
+          clientID: '6b72d7fea09ec0e01244',
+          clientSecret: '6ad51bfb2cabd8e976f9b91aeb1a4b430f801465',
+          repo: 'gitalk',
+          owner: 'rinfon',
+          admin: ['rinfon'],
           id: location.pathname,
-          distractionFreeMode: 'true'
+          labels: 'gitalk',
+          perPage: 15,
+          pagerDirection: 'last',
+          createIssueManually: true,
+          distractionFreeMode: false
         })
+
         gitalk.render('gitalk-container')           
        </script>
+
 
 
   
