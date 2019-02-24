@@ -915,7 +915,7 @@ git cherry-pick -x 1b2e1d63ff,-x 代表着保留原始作者信息
   <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
 
   <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
+<script src="/js/src/md5.min.js"></script>
    <script type="text/javascript">
         var gitalk = new Gitalk({
           clientID: '6b72d7fea09ec0e01244',
@@ -923,7 +923,7 @@ git cherry-pick -x 1b2e1d63ff,-x 代表着保留原始作者信息
           repo: 'rinfon.github.com',
           owner: 'rinfon',
           admin: ['rinfon'],
-          id: window.location.pathname,
+          id: md5(location.pathname),
           perPage: 15,
           pagerDirection: 'last',
           distractionFreeMode: true
