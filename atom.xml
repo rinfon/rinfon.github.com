@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-02-23T15:22:43.602Z</updated>
+  <updated>2019-03-01T14:27:22.842Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android Apk破解</title>
+    <link href="http://yoursite.com/2019/03/01/Android%20Apk%E7%A0%B4%E8%A7%A3/"/>
+    <id>http://yoursite.com/2019/03/01/Android Apk破解/</id>
+    <published>2019-03-01T14:27:22.842Z</published>
+    <updated>2019-03-01T14:27:22.842Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>自己动手，丰衣足食</p></blockquote><h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><ul><li><a href="http://binmt.cc/doc/index.php?s=/1&amp;page_id=1" target="_blank" rel="noopener">MT管理器.apk</a></li></ul><h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>多年前在iOS上进行过逆向，到现在为止还是无法忘记<strong>FLEX</strong>带给我的冲击是有多大，强大的方法搜索，丰富的社区破解资源。原来逆向可以这么简单，找到对应的方法(俗称G点)，修改个返回值，各种VIP沾手就来。后来去搞Android的时候，居然没有对应的软件可以实现上述的功能。由于平台的差异，iOS能够获取到运行时内存上的数据，然后进行修改。Android则不行，需要对Apk进行逆向，修改，打包。</p><a id="more"></a><hr><p>1.准备好你要逆向的apk<br>2.在手机上用mt管理器查看apk</p><p><img src="https://i.imgur.com/LoYFqLv.png" alt="device-2019-03-01-214724"></p><p>3.进去之后选择对应的dex文件查看，或者选择多个dex合并一起来看，我通常都是使用Dex++来把所有的dex打开。<br>4.搜索关键字，isvip，ispro，isbuy等等你能想到的方法名字，通过不断的查看代码，得到G点。对于这个apk的反编译，还得感谢开发者的良好编程习惯。在反编译的过程中，我发现猿哥居然把类的toString完整的输出来了，剩下了很多排查的时间。<img src="https://i.imgur.com/H87f4k2.png" alt="device-2019-03-01-215130"></p><p>5.查看代码<br><img src="https://i.imgur.com/NmPgpQR.png" alt="device-2019-03-01-215626"></p><p>6.最后能够判断出ispro正是此apk来判断是否为vip的方法，那么只需要<br>在对应的地方进行修改即可，强制返回一个true。<img src="https://i.imgur.com/W9BloKB.png" alt="device-2019-03-01-215203"><br>7.保存，去除签名，重新打包即可。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>其实上面的例子也没啥营养的，也只是演示了一下apk的破解过程。重点在下面</p><ul><li>如文中开头所说，逆向的关键在于G点，如何找到这个G点，就有很大学问了。提供一个思路，仅供参考<ul><li>第一步，搜索关键字<code>isDebug</code>，通常程序员都会封装一个自己的Log Utils，用于控制日志的开关，release包都会关掉。那么，我们可以通过打开这个开关，接上logcat，你就能看到apk输出所有日志，犹如把apk扒了一成皮。</li><li>通过apk里面的返回信息进行关键字的搜索，例如，有些app会提示你升级VIP，或者购买套餐，再或者激活失败等等关键词。来找到G点所在。</li><li>找到G点所在以后。就能为所欲为了。</li></ul></li><li>有时候，一些类里面的toString()方法可能会有意想不到的收获</li></ul><p>说说防范措施吧</p><ul><li>加入签名验证，在apk里面加入对签名文件的验证，先对签名文件md5，然后在程序启动的时候对apk里面的签名进行对比，不一样，则直接退出app，<strong>但请注意</strong>：<strong>不要在java层进行签名的判断，把判断的逻辑放在jni里面去，如果签名不一致，直接so闪退即可。虽说so指标不治本，但是还是能提高破解的难度，在攻与防之间，从来没有说哪一种方法能破解所有的apk，同样也没有任何一种防护措施能一了百了。两者都是互相存在，互相发展。</strong></li><li>apk加壳，在现有的加壳服务提供商中选择一家，来直接对apk进行加壳。但是加壳会增加apk的启动时间。</li><li>如果你的app跟服务器有关，那么所有的判断逻辑应该在服务器上面，而不是app里面。相信搞服务器的都明白这一点的。例如各种聊天软件的会员，各种音乐软件的会员。你最后破解了vip也还是<code>ziwei</code>版的app。</li></ul><blockquote><p>当你发现你的生活离不开一个App，并且它能带给你效益和创造价值。你应该考虑的是为它补上一个车票，而不是花大量的时间去破解。</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;自己动手，丰衣足食&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;工具&quot;&gt;&lt;a href=&quot;#工具&quot; class=&quot;headerlink&quot; title=&quot;工具&quot;&gt;&lt;/a&gt;工具&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://binmt.cc/doc/index.php?s=/1&amp;amp;page_id=1&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;MT管理器.apk&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;开始&quot;&gt;&lt;a href=&quot;#开始&quot; class=&quot;headerlink&quot; title=&quot;开始&quot;&gt;&lt;/a&gt;开始&lt;/h2&gt;&lt;p&gt;多年前在iOS上进行过逆向，到现在为止还是无法忘记&lt;strong&gt;FLEX&lt;/strong&gt;带给我的冲击是有多大，强大的方法搜索，丰富的社区破解资源。原来逆向可以这么简单，找到对应的方法(俗称G点)，修改个返回值，各种VIP沾手就来。后来去搞Android的时候，居然没有对应的软件可以实现上述的功能。由于平台的差异，iOS能够获取到运行时内存上的数据，然后进行修改。Android则不行，需要对Apk进行逆向，修改，打包。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="逆向" scheme="http://yoursite.com/tags/%E9%80%86%E5%90%91/"/>
+    
+      <category term="android" scheme="http://yoursite.com/tags/android/"/>
+    
+  </entry>
   
   <entry>
     <title>Android蓝牙连接问题</title>
