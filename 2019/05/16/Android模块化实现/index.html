@@ -98,17 +98,21 @@
 
 
 
-<meta name="description" content="程序员的百宝箱">
+<meta name="description" content="简单性和模块化是软件工程的基石；分布式和容错性是互联网的生命。 《Tim Berners-Lee》  什么是模块化个人认为模块化是对整个项目的解耦以及项目维护带来极大的优势。而且在协同开发的导致各种各样的问题（例如文件冲突等问题） 模块化还可以实现模块内自管理，模块内你可以自由发挥你的管理方式，不管你是mvp，mvvm。每个人维护若干个模块。">
 <meta name="keywords" content="程序员、码农、Stack Overflow">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Rinfon Chan&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/archives/2019/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android模块化实现">
+<meta property="og:url" content="http://yoursite.com/2019/05/16/Android模块化实现/index.html">
 <meta property="og:site_name" content="Rinfon Chan&#39;s Blog">
-<meta property="og:description" content="程序员的百宝箱">
+<meta property="og:description" content="简单性和模块化是软件工程的基石；分布式和容错性是互联网的生命。 《Tim Berners-Lee》  什么是模块化个人认为模块化是对整个项目的解耦以及项目维护带来极大的优势。而且在协同开发的导致各种各样的问题（例如文件冲突等问题） 模块化还可以实现模块内自管理，模块内你可以自由发挥你的管理方式，不管你是mvp，mvvm。每个人维护若干个模块。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.imgur.com/9s2C0in.png">
+<meta property="og:image" content="https://i.imgur.com/BSofDpm.jpg">
+<meta property="og:updated_time" content="2019-05-16T13:42:05.869Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Rinfon Chan&#39;s Blog">
-<meta name="twitter:description" content="程序员的百宝箱">
+<meta name="twitter:title" content="Android模块化实现">
+<meta name="twitter:description" content="简单性和模块化是软件工程的基石；分布式和容错性是互联网的生命。 《Tim Berners-Lee》  什么是模块化个人认为模块化是对整个项目的解耦以及项目维护带来极大的优势。而且在协同开发的导致各种各样的问题（例如文件冲突等问题） 模块化还可以实现模块内自管理，模块内你可以自由发挥你的管理方式，不管你是mvp，mvvm。每个人维护若干个模块。">
+<meta name="twitter:image" content="https://i.imgur.com/9s2C0in.png">
 
 
 
@@ -138,13 +142,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2019/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/16/Android模块化实现/">
 
 
 
 
 
-  <title>归档 | Rinfon Chan's Blog</title>
+  <title>Android模块化实现 | Rinfon Chan's Blog</title>
   
 
 
@@ -163,7 +167,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -299,391 +303,267 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/16/Android模块化实现/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Rinfon Chan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://imgur.com/IcStsut.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rinfon Chan's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">Android模块化实现</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-16T21:42:05+08:00">
+                2019-05-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 13 篇日志。 继续努力。
-      </span>
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
+            
+          
 
-        
+          
+          
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/05/16/Android模块化实现/" itemprop="url">
-              
-                <span itemprop="name">Android模块化实现</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-05-16T21:42:05+08:00" content="2019-05-16">
-          05-16
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+        </div>
+      </header>
+    
 
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/01/Android Apk破解/" itemprop="url">
-              
-                <span itemprop="name">Android Apk破解</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-01T22:27:22+08:00" content="2019-03-01">
-          03-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/02/23/Android蓝牙连接问题/" itemprop="url">
-              
-                <span itemprop="name">Android蓝牙连接问题</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-23T23:22:43+08:00" content="2019-02-23">
-          02-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <blockquote>
+<p>简单性和模块化是软件工程的基石；分布式和容错性是互联网的生命。 《Tim Berners-Lee》</p>
+</blockquote>
+<h2 id="什么是模块化"><a href="#什么是模块化" class="headerlink" title="什么是模块化"></a>什么是模块化</h2><p>个人认为模块化是对整个项目的解耦以及项目维护带来极大的优势。而且在协同开发的导致各种各样的问题（例如文件冲突等问题）</p>
+<p>模块化还可以实现模块内自管理，模块内你可以自由发挥你的管理方式，不管你是mvp，mvvm。每个人维护若干个模块。</p>
+<a id="more"></a>
+<h2 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h2><p>之前有阅读<a href="https://cloud.tencent.com/developer/article/1005631" target="_blank" rel="noopener">微信 Android 模块化架构重构实践</a>，其中提出的pin工程让我眼前一亮，原来还可以这么搞。同时也参考了一下<a href="https://mp.weixin.qq.com/s?__biz=MzAxNDUwMzU3Mw==&amp;mid=401044540&amp;idx=1&amp;sn=24b7d8fb655ae6dd5d989d0cb3c08e90&amp;scene=2&amp;srcid=0106EtxRjD2jHxzomxVPTwY3&amp;from=timeline&amp;isappinstalled=0&amp;uin=NzgwODIwNDgw&amp;key=&amp;devicetype=webwx&amp;version=70000001&amp;lang=zh_CN&amp;pass_ticket=46hW44w3Hxd7VY9rutz7mgLu1JGe2T1AAKNQpxNoYOSGi8NpmNYr%2BAZj%2BiXtRX2F" target="_blank" rel="noopener">饿了么移动App的架构演进</a>，那么其中的<code>Excalibur系统</code>也是一大亮点。</p>
+<p>结合各大厂的架构演进，再加上即将要开展的新项目的情况，最后决定使用<code>接口+SDK</code>方式，进行模块化管理。</p>
+<p>为什么不用类似微信的<code>pin工程</code>，原因是如果是要对现有的项目实现模块化，那么<code>pin</code>是一个非常好的过度方案，你无需进行繁杂的模块管理，直接在现有的工程上，以最快最少的方式就可以实现<code>pin工程</code>，最后完成module的转变。但如果我是全新的项目，则接口+模块会是更好的选择。</p>
+<h2 id="基本架构图"><a href="#基本架构图" class="headerlink" title="基本架构图"></a>基本架构图</h2><p> <img src="https://i.imgur.com/9s2C0in.png" alt="module"></p>
+<ul>
+<li>最底层是Common: 里面主要是核心模块、公共UI模块以及第三方库</li>
+<li>apis: 这里存放所有模块的暴露出来的接口</li>
+<li>Bridge: 桥接器，里面可以按需进行模块的注册</li>
+<li>App: App只依赖Bridge和Apis，模块的实现并不引用。</li>
+</ul>
+<p>这样下来，就可以根据需要输出不同的App，特别像那种会进行更换厂商提供的sdk的，或者要求输出不同模块需要单独变成一个App的，简直是天大的福音。</p>
+<h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><p><img src="https://i.imgur.com/BSofDpm.jpg" alt="-w276"></p>
+<p>首先，我们假设要集成某厂商的摄像头。我们定义一个plugin_camera模块，里面是摄像头具体实现，里面只有一个简单的方法echo</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Camera</span> <span class="keyword">implements</span> <span class="title">ICamera</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">echo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Log.i(<span class="string">"Camera"</span>,<span class="string">"echo hello"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>同时在Apis里面定义好要暴露的echo方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ICamera</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">echo</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后桥接器里面进行模块的桥接</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Bridge</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Bridge ourInstance = <span class="keyword">new</span> Bridge();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Bridge <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> ourInstance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    HashMap&lt;Class, Class&gt; build;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Bridge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        build = <span class="keyword">new</span> HashMap&lt;Class, Class&gt;();</span><br><span class="line"><span class="comment">//        register(ICamera.class, Camera.class);</span></span><br><span class="line">        register(ICamera.class, <span class="string">"com.rinfon.plugin_camera.Camera"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Bridge <span class="title">register</span><span class="params">(Class interfaceClass, Class apiClass)</span> </span>&#123;</span><br><span class="line">        build.put(interfaceClass, apiClass);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Bridge <span class="title">register</span><span class="params">(Class interfaceClass, String apiClassName)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Class t = Class.forName(apiClassName);</span><br><span class="line">            build.put(interfaceClass, t);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> &lt;T&gt; <span class="function">T <span class="title">plugin</span><span class="params">(Class&lt;T&gt; type)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> (T) build.get(type).newInstance();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后在主app里面直接使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Bridge bridge = Bridge.getInstance();</span><br><span class="line">bridge.plugin(ICamera.class).echo();</span><br></pre></td></tr></table></figure>
+<p>如果某天产品经理跟你说，需要把Camera单独出来做成一个App，你只需要在<code>plugin_camera</code>模块里面增加对应的<code>mainactivity</code>和对应的<code>Manifest.xml</code>就可以了。</p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
+<li>上面没有详细说明怎么实现模块App，但原理也很简单，新建模块的时候，你需要把模块内的<code>build.gradle</code>修改成</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!isOpenCamera.toBoolean()) &#123;</span><br><span class="line">    apply plugin: <span class="string">'com.android.application'</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    apply plugin: <span class="string">'com.android.library'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>继续在模块内生成一个debug用的<code>Manifest.xml</code>和release用的<code>Manifest.xml</code>。</p>
+<p>然后在根目录下的<code>gradle.properties</code>里面增加以下内容</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">isOpenCamera=<span class="keyword">false</span></span><br></pre></td></tr></table></figure>
+<p>实现具体请看源码吧。</p>
+<ul>
+<li>Bridge和Apis其实可以合并成一个模块也是可以的。</li>
+<li>Bridge里面的模块注册使用的方式是反射，但这只是为了演示作用，其实如果真的在实际开发过程中，会使用模块自动注册的方式，而且像Demo里面直接反射。如果还用了<code>ARoute</code>的话，那么其中也包含了自动注册。但个人更加倾向的是使用gradle插件，通过操作字节码的方式来实现自动注册的。当然也可以使用AOP的方式来注册。后期会详细说说这几种方式的却别。</li>
+</ul>
+<p>用一句网上看到的话来进行总结吧，我觉得非常好笑，也觉得非常的有道理的一句话。</p>
+<blockquote>
+<p>任何软件工程遇到的问题都可以通过增加一个中间层来解决! </p>
+</blockquote>
+<p>项目已上传<a href="https://github.com/rinfon/plugindemo" target="_blank" rel="noopener">github</a></p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/02/23/黑苹果安装/" itemprop="url">
-              
-                <span itemprop="name">黑苹果安装</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-23T23:08:45+08:00" content="2019-02-23">
-          02-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/02/14/Android自动化测试流程/" itemprop="url">
-              
-                <span itemprop="name">Android自动化测试流程</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-14T11:19:03+08:00" content="2019-02-14">
-          02-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/01/21/Builder模式/" itemprop="url">
-              
-                <span itemprop="name">Builder模式</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-21T00:49:07+08:00" content="2019-01-21">
-          01-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/01/17/Redis Docker搭建/" itemprop="url">
-              
-                <span itemprop="name">Redis Docker搭建</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-17T22:11:55+08:00" content="2019-01-17">
-          01-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/01/16/Mac升级Python到3.7/" itemprop="url">
-              
-                <span itemprop="name">Mac升级Python到3.7</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-16T17:21:52+08:00" content="2019-01-16">
-          01-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/01/16/MWeb 自动发布到 Hexo/" itemprop="url">
-              
-                <span itemprop="name">MWeb 自动发布到 Hexo</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-16T15:08:25+08:00" content="2019-01-16">
-          01-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/01/15/Android 项目架构之 MVP/" itemprop="url">
-              
-                <span itemprop="name">Android 项目架构之 MVP</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-15T21:09:25+08:00" content="2019-01-15">
-          01-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+</div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将是我最大的动力</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weixin.png" alt="Rinfon Chan 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Rinfon Chan 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/01/Android Apk破解/" rel="next" title="Android Apk破解">
+                <i class="fa fa-chevron-left"></i> Android Apk破解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2019/page/2/">2</a><a class="extend next" rel="next" href="/archives/2019/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -691,6 +571,12 @@
 
 
           
+
+  
+<div id="gitalk-container"></div>
+  
+
+
 
         </div>
         
@@ -711,8 +597,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -795,6 +690,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是模块化"><span class="nav-number">1.</span> <span class="nav-text">什么是模块化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本思路"><span class="nav-number">2.</span> <span class="nav-text">基本思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本架构图"><span class="nav-number">3.</span> <span class="nav-text">基本架构图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目结构"><span class="nav-number">4.</span> <span class="nav-text">项目结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意事项"><span class="nav-number">5.</span> <span class="nav-text">注意事项</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -948,6 +859,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -988,6 +903,27 @@
 
 
 
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="/js/src/md5.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: '6b72d7fea09ec0e01244',
+          clientSecret: '6ad51bfb2cabd8e976f9b91aeb1a4b430f801465',
+          repo: 'rinfon.github.com',
+          owner: 'rinfon',
+          admin: ['rinfon'],
+          id: md5(location.pathname),
+          perPage: 15,
+          pagerDirection: 'last',
+          distractionFreeMode: true
+        })
+
+        gitalk.render('gitalk-container')           
+       </script>
 
 
 
