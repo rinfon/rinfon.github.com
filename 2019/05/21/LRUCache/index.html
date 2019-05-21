@@ -98,17 +98,20 @@
 
 
 
-<meta name="description" content="程序员的百宝箱">
+<meta name="description" content="最近最少使用缓存算法，顾名思义，通过抛弃最近不使用的数据。在Android里面的LRUCache和DisLruCache都是使用这种算法。分别对应的是内存缓存和硬盘缓存。 原理通过LinkedHashMap双向链表来实现LRUCache的。LinkedHashMap有两种顺序，一种是LRU，而另一种则是按照插入顺序来读取。 LinkedHashMap的核心思想就是无论get还是put，都把数据插入">
 <meta name="keywords" content="程序员、码农、Stack Overflow">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Rinfon Chan&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/tags/优化/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LRUCache">
+<meta property="og:url" content="http://yoursite.com/2019/05/21/LRUCache/index.html">
 <meta property="og:site_name" content="Rinfon Chan&#39;s Blog">
-<meta property="og:description" content="程序员的百宝箱">
+<meta property="og:description" content="最近最少使用缓存算法，顾名思义，通过抛弃最近不使用的数据。在Android里面的LRUCache和DisLruCache都是使用这种算法。分别对应的是内存缓存和硬盘缓存。 原理通过LinkedHashMap双向链表来实现LRUCache的。LinkedHashMap有两种顺序，一种是LRU，而另一种则是按照插入顺序来读取。 LinkedHashMap的核心思想就是无论get还是put，都把数据插入">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.imgur.com/KTe7W7F.jpg">
+<meta property="og:updated_time" content="2019-05-21T13:32:18.016Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Rinfon Chan&#39;s Blog">
-<meta name="twitter:description" content="程序员的百宝箱">
+<meta name="twitter:title" content="LRUCache">
+<meta name="twitter:description" content="最近最少使用缓存算法，顾名思义，通过抛弃最近不使用的数据。在Android里面的LRUCache和DisLruCache都是使用这种算法。分别对应的是内存缓存和硬盘缓存。 原理通过LinkedHashMap双向链表来实现LRUCache的。LinkedHashMap有两种顺序，一种是LRU，而另一种则是按照插入顺序来读取。 LinkedHashMap的核心思想就是无论get还是put，都把数据插入">
+<meta name="twitter:image" content="https://i.imgur.com/KTe7W7F.jpg">
 
 
 
@@ -138,13 +141,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/优化/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/21/LRUCache/">
 
 
 
 
 
-  <title>标签: 优化 | Rinfon Chan's Blog</title>
+  <title>LRUCache | Rinfon Chan's Blog</title>
   
 
 
@@ -163,7 +166,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -299,52 +302,228 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>优化<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/21/LRUCache/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Rinfon Chan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://imgur.com/IcStsut.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rinfon Chan's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/05/18/那些年，我们一起做过的Android优化/" itemprop="url">
-              
-                <span itemprop="name">那些年，我们一起做过的Android优化</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">LRUCache</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-05-18T11:42:59+08:00" content="2019-05-18">
-          05-18
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-21T21:32:18+08:00">
+                2019-05-21
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近最少使用缓存算法，顾名思义，通过抛弃最近不使用的数据。在Android里面的LRUCache和DisLruCache都是使用这种算法。分别对应的是内存缓存和硬盘缓存。</p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>通过<a href="https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html" target="_blank" rel="noopener">LinkedHashMap</a>双向链表来实现LRUCache的。LinkedHashMap有两种顺序，一种是LRU，而另一种则是按照插入顺序来读取。</p>
+<p>LinkedHashMap的核心思想就是无论<code>get</code>还是<code>put</code>，都把数据插入链表尾端，然后当内存缓存达到最大值的时候，直接抛弃链表顶端数据即可。</p>
+<p>原理图引用网上的，我已经找不到出处了。<br><a id="more"></a></p>
+<p><img src="https://i.imgur.com/KTe7W7F.jpg" alt=""></p>
 
       
     </div>
+    
+    
+    
 
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+</div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将是我最大的动力</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weixin.png" alt="Rinfon Chan 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Rinfon Chan 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/18/那些年，我们一起做过的Android优化/" rel="next" title="那些年，我们一起做过的Android优化">
+                <i class="fa fa-chevron-left"></i> 那些年，我们一起做过的Android优化
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -352,6 +531,12 @@
 
 
           
+
+  
+<div id="gitalk-container"></div>
+  
+
+
 
         </div>
         
@@ -372,8 +557,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -456,6 +650,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#原理"><span class="nav-number">1.</span> <span class="nav-text">原理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -609,6 +819,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -649,6 +863,27 @@
 
 
 
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="/js/src/md5.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: '6b72d7fea09ec0e01244',
+          clientSecret: '6ad51bfb2cabd8e976f9b91aeb1a4b430f801465',
+          repo: 'rinfon.github.com',
+          owner: 'rinfon',
+          admin: ['rinfon'],
+          id: md5(location.pathname),
+          perPage: 15,
+          pagerDirection: 'last',
+          distractionFreeMode: true
+        })
+
+        gitalk.render('gitalk-container')           
+       </script>
 
 
 

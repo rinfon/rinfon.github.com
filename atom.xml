@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-18T03:42:59.174Z</updated>
+  <updated>2019-05-21T13:32:18.016Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>LRUCache</title>
+    <link href="http://yoursite.com/2019/05/21/LRUCache/"/>
+    <id>http://yoursite.com/2019/05/21/LRUCache/</id>
+    <published>2019-05-21T13:32:18.016Z</published>
+    <updated>2019-05-21T13:32:18.016Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近最少使用缓存算法，顾名思义，通过抛弃最近不使用的数据。在Android里面的LRUCache和DisLruCache都是使用这种算法。分别对应的是内存缓存和硬盘缓存。</p><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>通过<a href="https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html" target="_blank" rel="noopener">LinkedHashMap</a>双向链表来实现LRUCache的。LinkedHashMap有两种顺序，一种是LRU，而另一种则是按照插入顺序来读取。</p><p>LinkedHashMap的核心思想就是无论<code>get</code>还是<code>put</code>，都把数据插入链表尾端，然后当内存缓存达到最大值的时候，直接抛弃链表顶端数据即可。</p><p>原理图引用网上的，我已经找不到出处了。<br><a id="more"></a></p><p><img src="https://i.imgur.com/KTe7W7F.jpg" alt=""></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近最少使用缓存算法，顾名思义，通过抛弃最近不使用的数据。在Android里面的LRUCache和DisLruCache都是使用这种算法。分别对应的是内存缓存和硬盘缓存。&lt;/p&gt;
+&lt;h2 id=&quot;原理&quot;&gt;&lt;a href=&quot;#原理&quot; class=&quot;headerlink&quot; title=&quot;原理&quot;&gt;&lt;/a&gt;原理&lt;/h2&gt;&lt;p&gt;通过&lt;a href=&quot;https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;LinkedHashMap&lt;/a&gt;双向链表来实现LRUCache的。LinkedHashMap有两种顺序，一种是LRU，而另一种则是按照插入顺序来读取。&lt;/p&gt;
+&lt;p&gt;LinkedHashMap的核心思想就是无论&lt;code&gt;get&lt;/code&gt;还是&lt;code&gt;put&lt;/code&gt;，都把数据插入链表尾端，然后当内存缓存达到最大值的时候，直接抛弃链表顶端数据即可。&lt;/p&gt;
+&lt;p&gt;原理图引用网上的，我已经找不到出处了。&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>那些年，我们一起做过的Android优化</title>
